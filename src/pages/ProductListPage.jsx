@@ -7,7 +7,7 @@ import useProducts from "@/hooks/useProducts";
 
 export function ProductListPage() {
   const [query, setQuery] = useState("");
-  const { products, total, loading, error } = useProducts(query);
+  const { products, loading, error } = useProducts(query);
 
   return (
     <div className="page-container">
