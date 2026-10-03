@@ -5,17 +5,22 @@ import {
   getImage,
   getModel,
   getPrice,
-} from "../utils/product";
+  getProductId,
+} from "@/utils/product";
 
 const ProductCard = ({ product }) => {
-  const id = product.id ?? product.productId;
+  const id = getProductId(product);
   const image = getImage(product);
 
   return (
     <Link className="product-card" to={`/product/${id}`}>
       <div className="product-card-image">
         {image ? (
-          <img src={image} alt={`${getBrand(product)} ${getModel(product)}`} />
+          <img
+            src={image}
+            alt={`${getBrand(product)} ${getModel(product)}`}
+            loading="lazy"
+          />
         ) : (
           <span>Sin imagen</span>
         )}
@@ -27,6 +32,6 @@ const ProductCard = ({ product }) => {
       </div>
     </Link>
   );
-};
+}
 
 export default ProductCard;

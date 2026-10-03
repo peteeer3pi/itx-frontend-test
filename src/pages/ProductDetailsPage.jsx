@@ -1,23 +1,19 @@
 import { Link, useParams } from "react-router-dom";
-import LoadingState from "../components/ui/LoadingState";
-import ErrorState from "../components/ui/ErrorState";
-import useProduct from "../hooks/useProduct";
-import {
-  formatPrice,
-  getBrand,
-  getImage,
-  getModel,
-  getPrice,
-} from "../utils/product";
+import ProductImage from "@/components/products/ProductImage";
+import ProductDescription from "@/components/products/ProductDescription";
+import ProductActions from "@/components/products/ProductActions";
+import LoadingState from "@/components/ui/LoadingState";
+import ErrorState from "@/components/ui/ErrorState";
+import useProduct from "@/hooks/useProduct";
 
-export default function ProductDetailsPage() {
+export function ProductDetailsPage() {
   const { id } = useParams();
   const { product, loading, error } = useProduct(id);
 
   if (loading)
     return (
       <div className="page-container">
-        <LoadingState label="Cargando producto…" />
+        <LoadingState label="Cargando detalle…" />
       </div>
     );
   if (error || !product)
@@ -30,24 +26,13 @@ export default function ProductDetailsPage() {
   return (
     <div className="page-container">
       <Link className="back-link" to="/">
-        ← Volver al catálogo
+        ← Volver a productos  
       </Link>
       <section className="product-detail">
-        <div className="product-detail-image">
-          {getImage(product) ? (
-            <img
-              src={getImage(product)}
-              alt={`${getBrand(product)} ${getModel(product)}`}
-            />
-          ) : (
-            <span>Sin imagen</span>
-          )}
-        </div>
+        <ProductImage product={product} />
         <div className="detail-content">
-          <p className="eyebrow">{getBrand(product)}</p>
-          <h1>{getModel(product)}</h1>
-          <p className="detail-price">{formatPrice(getPrice(product))}</p>
-          <p>Consulta las características disponibles para este producto.</p>
+          <ProductDescription product={product} />
+          <ProductActions product={product} />
         </div>
       </section>
     </div>

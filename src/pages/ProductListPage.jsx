@@ -1,18 +1,13 @@
-import { useMemo, useState } from "react";
-import ProductCard from "../components/ProductCard";
-import SearchBar from "../components/ui/SearchBar";
-import LoadingState from "../components/ui/LoadingState";
-import ErrorState from "../components/ui/ErrorState";
-import useProducts from "../hooks/useProducts";
-import { matchesProduct } from "../utils/product";
+import { useState } from "react";
+import ProductCard from "@/components/products/ProductCard";
+import SearchBar from "@/components/ui/SearchBar";
+import LoadingState from "@/components/ui/LoadingState";
+import ErrorState from "@/components/ui/ErrorState";
+import useProducts from "@/hooks/useProducts";
 
-export default function ProductListPage() {
+export function ProductListPage() {
   const [query, setQuery] = useState("");
-  const { products, loading, error } = useProducts();
-  const filteredProducts = useMemo(
-    () => products.filter((product) => matchesProduct(product, query)),
-    [products, query],
-  );
+  const { products, total, loading, error } = useProducts(query);
 
   return (
     <div className="page-container">
@@ -20,27 +15,21 @@ export default function ProductListPage() {
         <div>
           <p className="eyebrow">Catálogo</p>
           <h1>Dispositivos móviles</h1>
-          {!loading && !error && (
-            <p className="result-count">{filteredProducts.length} productos</p>
-          )}
         </div>
         <SearchBar value={query} onChange={setQuery} />
       </section>
 
-      {loading && <LoadingState />}
+      {loading && <LoadingState label="Cargando productos…" />}
       {error && <ErrorState />}
-      {!loading && !error && filteredProducts.length === 0 && (
+      {!loading && !error && products.length === 0 && (
         <div className="state-card">
           No hay productos que coincidan con tu búsqueda.
         </div>
       )}
-      {!loading && !error && filteredProducts.length > 0 && (
+      {!loading && !error && products.length > 0 && (
         <section className="product-grid">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id ?? product.productId}
-              product={product}
-            />
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </section>
       )}

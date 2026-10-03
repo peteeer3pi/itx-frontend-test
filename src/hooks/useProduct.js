@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getProduct } from "../services/api";
+import { getProduct } from "@/services/api";
 
-export default function useProduct(id) {
+const useProduct = (id) => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,4 +29,6 @@ export default function useProduct(id) {
   }, [id]);
 
   return { product, loading, error };
-}
+};
+
+export default useProduct;

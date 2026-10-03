@@ -1,26 +1,31 @@
 {
   "name": "itx-frontend-test",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "lint": "eslint ."
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@vitejs/plugin-react": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "vite": "latest",
     "react-router-dom": "latest",
-    "@heroicons/react": "^2.2.0"
+    "vite": "latest"
   },
   "devDependencies": {
     "@eslint/js": "latest",
     "eslint": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
-    "globals": "latest"
+    "globals": "latest",
+    "jsdom": "latest",
+    "vitest": "latest"
   }
 }
