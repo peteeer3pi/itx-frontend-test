@@ -9,6 +9,7 @@ export default defineConfig({
       "@": path.resolve(import.meta.dirname, "./src"),
     },
   },
+  server: { port: 3000, },
   test: {
     environment: "jsdom",
     globals: true,
