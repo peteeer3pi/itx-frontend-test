@@ -1,16 +1,32 @@
-const ProductCard = ({ product }) => {
+import {
+  formatPrice,
+  getBrand,
+  getImage,
+  getModel,
+  getPrice,
+} from "../utils/product";
+
+export default function ProductCard({ product }) {
+  const image = getImage(product);
+
   return (
     <article className="product-card">
       <div className="product-card-image">
-        <img src={product.image} alt={`${product.brand} ${product.model}`} />
+        {image ? (
+          <img
+            src={image}
+            alt={`${getBrand(product)} ${getModel(product)}`}
+            loading="lazy"
+          />
+        ) : (
+          <span>Sin imagen</span>
+        )}
       </div>
       <div className="product-card-body">
-        <p className="product-brand">{product.brand}</p>
-        <h2>{product.model}</h2>
-        <strong>{product.price} €</strong>
+        <p className="product-brand">{getBrand(product)}</p>
+        <h2>{getModel(product)}</h2>
+        <strong>{formatPrice(getPrice(product))}</strong>
       </div>
     </article>
   );
-};
-
-export default ProductCard;
+}

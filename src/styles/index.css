@@ -68,7 +68,7 @@ body {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
@@ -119,4 +119,20 @@ body {
   .product-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.state-card {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e9eaee;
+  border-radius: 20px;
+  color: #777b83;
+  text-align: center;
+}
+
+.error-state {
+  color: #a33a3a;
 }

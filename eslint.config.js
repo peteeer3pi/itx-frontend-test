@@ -10,17 +10,9 @@ export default [
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        ecmaFeatures: { jsx: true },
-      },
+      parserOptions: { ecmaVersion: "latest", sourceType: "module", ecmaFeatures: { jsx: true } },
     },
     plugins: { "react-hooks": reactHooks, "react-refresh": reactRefresh },
-    rules: {
-      ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": "warn",
-    },
+    rules: { ...js.configs.recommended.rules, ...reactHooks.configs.recommended.rules, "react-refresh/only-export-components": "warn" },
   },
 ];

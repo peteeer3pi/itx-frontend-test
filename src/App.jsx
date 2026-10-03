@@ -1,30 +1,11 @@
 import ProductCard from "./components/ProductCard";
+import LoadingState from "./components/ui/LoadingState";
+import ErrorState from "./components/ui/ErrorState";
+import useProducts from "./hooks/useProducts";
 
-const products = [
-  {
-    id: "1",
-    brand: "Apple",
-    model: "iPhone 15",
-    price: 799,
-    image: "https://dummyjson.com/image/300x400/eeeeee/111111&text=iPhone+15",
-  },
-  {
-    id: "2",
-    brand: "Samsung",
-    model: "Galaxy S24",
-    price: 899,
-    image: "https://dummyjson.com/image/300x400/eeeeee/111111&text=Galaxy+S24",
-  },
-  {
-    id: "3",
-    brand: "Google",
-    model: "Pixel 8",
-    price: 699,
-    image: "https://dummyjson.com/image/300x400/eeeeee/111111&text=Pixel+8",
-  },
-];
+export default function App() {
+  const { products, loading, error } = useProducts();
 
-const App = () => {
   return (
     <div className="app-shell">
       <header className="site-header">
@@ -37,17 +18,26 @@ const App = () => {
         <section className="page-heading">
           <p className="eyebrow">Catálogo</p>
           <h1>Dispositivos móviles</h1>
-          <p className="result-count">{products.length} productos</p>
+          {!loading && !error && (
+            <p className="result-count">{products.length} productos</p>
+          )}
         </section>
 
-        <section className="product-grid">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </section>
+        {loading && <LoadingState />}
+        {error && <ErrorState />}
+
+        {!loading && !error && products.length === 0 && (
+          <div className="state-card">No hay productos disponibles.</div>
+        )}
+
+        {!loading && !error && products.length > 0 && (
+          <section className="product-grid">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </section>
+        )}
       </main>
     </div>
   );
-};
-
-export default App;
+}
