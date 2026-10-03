@@ -12,7 +12,9 @@
     "@vitejs/plugin-react": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "vite": "latest"
+    "vite": "latest",
+    "react-router-dom": "latest",
+    "@heroicons/react": "^2.2.0"
   },
   "devDependencies": {
     "@eslint/js": "latest",

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   formatPrice,
   getBrand,
@@ -6,27 +7,26 @@ import {
   getPrice,
 } from "../utils/product";
 
-export default function ProductCard({ product }) {
+const ProductCard = ({ product }) => {
+  const id = product.id ?? product.productId;
   const image = getImage(product);
 
   return (
-    <article className="product-card">
+    <Link className="product-card" to={`/product/${id}`}>
       <div className="product-card-image">
         {image ? (
-          <img
-            src={image}
-            alt={`${getBrand(product)} ${getModel(product)}`}
-            loading="lazy"
-          />
+          <img src={image} alt={`${getBrand(product)} ${getModel(product)}`} />
         ) : (
           <span>Sin imagen</span>
         )}
       </div>
       <div className="product-card-body">
-        <p className="product-brand">{getBrand(product)}</p>
+        <span className="eyebrow">{getBrand(product)}</span>
         <h2>{getModel(product)}</h2>
         <strong>{formatPrice(getPrice(product))}</strong>
       </div>
-    </article>
+    </Link>
   );
-}
+};
+
+export default ProductCard;

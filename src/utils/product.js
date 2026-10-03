@@ -30,6 +30,14 @@ export function getPrice(product) {
   return firstDefined(product?.price, product?.priceFormatted, null);
 }
 
+export function matchesProduct(product, query) {
+  const normalized = query.trim().toLocaleLowerCase();
+  if (!normalized) return true;
+  return `${getBrand(product)} ${getModel(product)}`
+    .toLocaleLowerCase()
+    .includes(normalized);
+}
+
 export function formatPrice(price) {
   const value = Number(price);
   return Number.isNaN(value) ? "Precio no disponible" : `${value.toFixed(2)} €`;
