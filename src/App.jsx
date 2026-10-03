@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "@/components/ui/Header";
-import { ProductListPage } from "@/pages/ProductListPage";
-import { ProductDetailsPage } from "@/pages/ProductDetailsPage";
+import ProductListPage from "@/pages/ProductListPage";
+import ProductDetailsPage from "@/pages/ProductDetailsPage";
 import { NotificationProvider } from "@/context/NotificationContext";
 import Notifications from "@/components/notifications/Notifications";
 

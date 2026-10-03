@@ -5,7 +5,7 @@ import LoadingState from "@/components/ui/LoadingState";
 import ErrorState from "@/components/ui/ErrorState";
 import useProducts from "@/hooks/useProducts";
 
-export function ProductListPage() {
+export const ProductListPage = () => {
   const [query, setQuery] = useState("");
   const { products, loading, error } = useProducts(query);
 
@@ -36,3 +36,6 @@ export function ProductListPage() {
     </div>
   );
 }
+
+export default ProductListPage;
+

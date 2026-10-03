@@ -6,7 +6,7 @@ import LoadingState from "@/components/ui/LoadingState";
 import ErrorState from "@/components/ui/ErrorState";
 import useProduct from "@/hooks/useProduct";
 
-export function ProductDetailsPage() {
+export const ProductDetailsPage = () => {
   const { id } = useParams();
   const { product, loading, error } = useProduct(id);
 
@@ -26,7 +26,7 @@ export function ProductDetailsPage() {
   return (
     <div className="page-container">
       <Link className="back-link" to="/">
-        ← Volver a productos  
+        ← Volver a productos
       </Link>
       <section className="product-detail">
         <ProductImage product={product} />
@@ -37,4 +37,6 @@ export function ProductDetailsPage() {
       </section>
     </div>
   );
-}
+};
+
+export default ProductDetailsPage;
